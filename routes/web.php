@@ -18,10 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('promotion',PromotionController::class);
 
 Route::get('index',[PromotionController::class,'select']);
 
 Route::get('/add',[PromotionController::class ,'add']);
 
 Route::get('/insert',[PromotionController::class , 'insert']);
+
+Route::get('/delete',[PromotionController::class,'delete']);
+
+Route::get('/edit/{id}',[PromotionController::class,'edit']);
+Route::get('/update/{id}', [ PromotionController::class,'update' ]);
+
