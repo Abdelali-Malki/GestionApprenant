@@ -19,14 +19,19 @@ Route::get('/', function () {
 });
 
 
-Route::get('index',[PromotionController::class,'select']);
+Route::get('/index', [PromotionController::class , 'select']);
 
-Route::get('/add',[PromotionController::class ,'add']);
+Route::get('/add', [PromotionController::class ,'add']);
 
-Route::get('/insert',[PromotionController::class , 'insert']);
+Route::get('/insert', [PromotionController::class ,'insert']);
 
-Route::get('/delete',[PromotionController::class,'delete']);
+Route::get('/delete', [ PromotionController::class,'delete' ]);
 
-Route::get('/edit/{id}',[PromotionController::class,'edit']);
-Route::get('/update/{id}', [ PromotionController::class,'update' ]);
+Route::get('/update_promotion/{id}', [ PromotionController::class,'update_promotion' ]);
+
+Route::get('/edit/{id}', [ PromotionController::class,'edit']);
+
+
+Route::get('search/{name}',[PromotionController::class,'search']);
+Route::get('search',[PromotionController::class,'search']);
 

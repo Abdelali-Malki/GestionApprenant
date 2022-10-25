@@ -7,41 +7,57 @@ use Illuminate\Http\Request;
 
 class PromotionController extends Controller
 {
-    public function select( Request $req){
-        $data=Promotion::all();  
-        return view('index',compact('data'));
+  public function select(){
+      $data = promotion::all();
+      return view ('index', compact("data"));
+  }
+
+  public function add(){
+      return view('add');
+  }
+
+  public function insert(Request $request){
+      $addpromotion = new promotion();
+      $addpromotion->name = $request->name;
+      $addpromotion->save(); 
+      return redirect('index');
+
+  }
+
+  public function delete(Request $request){
+
+      promotion::where('id',$request->id)->delete();
+      return redirect('index');
+  }
+
+
+  public function update_promotion($id){
+      $edit = new promotion();    
+      $promotion = $edit::where('id', $id )->get();
+      return view('update_promotion', compact('promotion'));
+  }
+  
+
+  public function edit($id,Request $request){
+      $editpromotion = promotion::where('id',$id)->first();
+      $editpromotion->name = $request->name;
+      $editpromotion->save();
+      return redirect('index');
+      // return $editpromotion;
+  }
+
+  public function search($name=null){ 
+      // dd($request->search);
+      //  dd($data);
+      if($name == null){
+          $data =promotion::all();
+          return view('index_search',compact('data'));        }
+      else {
+          $data =promotion::where('name', 'like','%'.$name.'%')->get();
+          return view('index_search',compact('data'));
+
       }
 
-      public function add(){
-        return view('add');
-    
-    }
-
-      public function insert(Request $req){
-        $addmodel=new Promotion;
-        $addmodel->name=$req->name;
-        $addmodel->save();
-      }
-
-      public function delete(Request $req){
-        $deletemodel =new Promotion();
-        $deletemodel::where('id',$req->id)->delete();
-        return redirect('index');
-
-      }
-
-      public function edit($id){
-        $editpromotion=new Promotion;
-       $Promotion = $editpromotion::where('id', $id )->get();
-        return view('edit',compact('Promotion'));
-      }
-
-      public function Update($id , Request $req){
-        $editpromotion=Promotion::where('id',$id)->fist();
-        $editpromotion->name=$req->name;
-        $editpromotion->save();
-        return redirect('index')->with("status","Update Successfully");
-       ;
-      }
+  }
 
     }

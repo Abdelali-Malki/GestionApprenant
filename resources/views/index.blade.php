@@ -1,13 +1,20 @@
-@foreach ($data as $item)
+<button> <a href="add">add</a> </button>
+<input type="text" name="search" id="search" placeholder="search">
 
-<div>
-    for
-    id: {{ $item->id }} 
-    
-    name : {{ $item->name }}
-    <a href="/delete?id={{ $item->id }}">delete</a> 
-    <a href="/update/{{ $item->id }}">/edit</a>
+
+
+<div id="data">
+
+    @foreach ($data as $row)
+        <div>
+            Id : {{ $row->id }} 
+            Name : {{ $row->name }}
+            <a href="/delete?id={{ $row->id }}">Delete </a> 
+            <a href="/update_promotion/{{ $row->id }}">/ Edit </a> 
+            <br>
+        </div>
+    @endforeach
     
 </div>
-    
-@endforeach
+
+<script src="{{ URL::asset('js/search.js') }}"></script>
