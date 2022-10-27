@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprenantController;
 use App\Http\Controllers\PromotionController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,16 @@ Route::get('/edit/{id}', [ PromotionController::class,'edit']);
 
 
 Route::get('search/{name}',[PromotionController::class,'search']);
+
 Route::get('search',[PromotionController::class,'search']);
+
+Route::get('selectapprenant',[ApprenantController::class,'selectapprenant']);
+
+Route::get('/deleteapprenant',[ApprenantController::class,'deleteapprenant']);
+
+Route::get('/insertapprenant', [ApprenantController::class ,'insertapprenant']);
+
+Route::get('/updateapprenant/{id}',[ApprenantController::class,'updateapprenant']);
+
+Route::get('/edit/{id}',[ApprenantController::class,'edit']);
 
