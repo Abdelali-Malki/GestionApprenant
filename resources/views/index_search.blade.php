@@ -1,4 +1,3 @@
-
 @foreach ($data as $row)
 <div>
     Id : {{ $row->id }} 
